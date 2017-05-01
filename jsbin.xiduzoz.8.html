@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by bgabor91 (http://jsbin.com/xiduzoz/8/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta name="description" content="2016-A mi évünk-slideshow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  
+<style id="jsbin-css">
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    background-color:cadetblue;
+}
+h1 {
+    color: black;
+    opacity: 0.8;
+    font-size: 300%;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 3px 3px 5px ;
+    font-style: oblique;
+}
+
+#slider {
+    width: 720px;
+    height: 400px;
+    overflow: hidden;
+    margin-left:auto;
+    margin-right: auto;
+    border:6px solid white;
+    box-shadow: 30px 30px 20px black;
+    border-radius: 7px;
+    
+}
+
+#slider .slides {
+    display: block;
+    width: 21120px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+
+#slider .slide {
+    float: left;
+    list-style-type: none;
+    width: 720px;
+    height: 400px;
+   
+}
+
+
+</style>
+</head>
+<body>
+<div class="container">
+            <div class="header">
+              <br>  
+              <br>
+              <h1 class="text-muted">2016 - A Mi évünk</h1>
+            </div>
+            <br>
+            <br>
+            <div id="slider">
+                <ul class="slides">
+                    <li class="slide slide1"><img src="http://i.imgur.com/lEFFSla.jpg?1"></li>
+                    <li class="slide slide2"><img src="http://i.imgur.com/1dyucQt.jpg?1"></li>
+                    <li class="slide slide3"><img src="http://i.imgur.com/4ZO2iS8.jpg?1"></li>
+                    <li class="slide slide4"><img src="http://i.imgur.com/QAseBpg.jpg?1"></li>
+                    <li class="slide slide5"><img src="http://i.imgur.com/p6wsBsi.jpg?1"></li>
+                    <li class="slide slide6"><img src="http://i.imgur.com/jmx0gho.jpg?1"></li>
+                    <li class="slide slide7"><img src="http://i.imgur.com/Au4QBHc.jpg?2"></li>
+                    <li class="slide slide8"><img src="http://i.imgur.com/wTywtNL.jpg?1"></li>
+                    <li class="slide slide9"><img src="http://i.imgur.com/LFw6gTg.jpg?2"></li>
+                    <li class="slide slide10"><img src="http://i.imgur.com/aXhxHwX.jpg?1"></li>
+                    <li class="slide slide11"><img src="http://i.imgur.com/fHalNgq.jpg?1"></li>
+                    <li class="slide slide12"><img src="http://i.imgur.com/XOXAh2P.jpg?2"></li>
+                    <li class="slide slide13"><img src="http://i.imgur.com/OXI1PZB.jpg?1"></li>
+                    <li class="slide slide14"><img src="http://i.imgur.com/RoyJ5dj.jpg?1"></li>
+                    <li class="slide slide15"><img src="http://i.imgur.com/TZ9vNnl.jpg?1"></li>
+                    <li class="slide slide16"><img src="http://i.imgur.com/xKSVmzq.jpg"></li>
+                    <li class="slide slide17"><img src="http://i.imgur.com/Zi3XJLB.jpg?1"></li>
+                    <li class="slide slide18"><img src="http://i.imgur.com/QjsAdlM.jpg?1"></li>
+                    <li class="slide slide19"><img src="http://i.imgur.com/1wBCEn7.jpg?1"></li>
+                    <li class="slide slide20"><img src="http://i.imgur.com/OXaONNL.jpg?1"></li>
+                    <li class="slide slide21"><img src="http://i.imgur.com/Bu24omZ.jpg?1"></li>
+                    <li class="slide slide22"><img src="http://i.imgur.com/40IJd6S.jpg?1"></li>
+                    <li class="slide slide23"><img src="http://i.imgur.com/n7apUWI.jpg"></li>
+                    <li class="slide slide24"><img src="http://i.imgur.com/d5YD0l5.jpg"></li>
+                    <li class="slide slide25"><img src="http://i.imgur.com/1nMJil5.jpg"></li>
+                    <li class="slide slide26"><img src="http://i.imgur.com/PZKvhTe.jpg?1"></li>
+                    <li class="slide slide1"><img src="http://i.imgur.com/lEFFSla.jpg?1"></li>
+                </ul>
+            </div>
+
+        </div>
+<script id="jsbin-javascript">
+$(function() {
+
+    //settings for slider
+    var width = 720;
+    var animationSpeed = 1200;
+    var pause = 5000;
+    var currentSlide = 1;
+
+    //cache DOM elements
+    var $slider = $('#slider');
+    var $slideContainer = $('.slides', $slider);
+    var $slides = $('.slide', $slider);
+
+    var interval;
+
+    function startSlider() {
+        interval = setInterval(function() {
+            $slideContainer.animate({'margin-left': '-='+width}, animationSpeed, function() {
+                if (++currentSlide === $slides.length) {
+                    currentSlide = 1;
+                    $slideContainer.css('margin-left', 0);
+                }
+            });
+        }, pause);
+    }
+    function pauseSlider() {
+        clearInterval(interval);
+    }
+
+    $slideContainer
+        .on('mouseenter', pauseSlider)
+        .on('mouseleave', startSlider);
+
+    startSlider();
+
+
+});
+
+
+</script>
+</body>
+</html>
